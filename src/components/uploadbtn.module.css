@@ -1,0 +1,31 @@
+.link:hover {
+  text-decoration: none;
+}
+
+.container {
+  padding: 15px;
+  background-color: rgb(255, 164, 164);
+  color: black;
+  border-radius: 40px;
+  max-width: 55px;
+  overflow: hidden;
+  transition: max-width 0.3s;
+}
+
+.container:hover {
+  max-width: 200px;
+}
+
+.btn {
+  transition: transform 0.3s;
+}
+
+.container:hover .btn {
+  transform: rotate(90deg);
+}
+
+.text {
+  text-decoration: none;
+  margin-left: 25px;
+  white-space: nowrap;
+}
