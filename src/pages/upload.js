@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addImage } from "../util/api";
+import { Form, Button } from "react-bootstrap";
 import styles from "./upload.module.css";
 
 const Upload = () => {
@@ -16,15 +17,15 @@ const Upload = () => {
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         <input
           type="file"
           name="file"
           onChange={onChange}
           accept="image/x-png,image/gif,image/jpeg"
         />
-        <button type="submit">Upload</button>
-      </form>
+        <Button type="submit">Upload</Button>
+      </Form>
       <img src={img_url} />
     </div>
   );
