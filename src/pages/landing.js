@@ -6,6 +6,7 @@ import { Col } from "react-bootstrap";
 
 const Landing = () => {
   const [images, setImages] = useState([]);
+  const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchImage = async (filename) => {
@@ -19,13 +20,16 @@ const Landing = () => {
     files = files.data;
     // console.log(files);
     let fetched = [];
+    let contentTypes = [];
     files.forEach(async (file, index) => {
       let fetchedImage = await fetchImage(file.filename);
       if (fetchedImage && fetchedImage.data && fetchedImage.data.data) {
         fetched.push(fetchedImage.data.data);
+        contentTypes.push(fetchedImage.data.contentType);
       }
-      if (index === files.length - 1) {
+      if (fetched.length === files.length) {
         setImages(fetched);
+        setTypes(contentTypes);
         setLoading(false);
       }
     });
@@ -39,8 +43,8 @@ const Landing = () => {
     <>
       <div>{loading ? "LOADING...." : "LOADED"}</div>
       <Col>
-        {images.map((image) => (
-          <img src={`data:image/png;base64,${image}`} height={100} />
+        {images.map((image, index) => (
+          <img src={`data:${types[index]};base64,${image}`} height={100} />
         ))}
       </Col>
 
