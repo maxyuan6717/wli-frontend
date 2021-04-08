@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addImage } from "../util/api";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Row } from "react-bootstrap";
 import styles from "./uploadmodal.module.css";
 
 const UploadModal = ({ show, setShow }) => {
@@ -9,6 +9,8 @@ const UploadModal = ({ show, setShow }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await addImage(file);
+    setShow(false);
+    setImgURL(null);
   };
 
   const onChange = (e) => {
@@ -22,6 +24,7 @@ const UploadModal = ({ show, setShow }) => {
       show={show}
       onHide={() => {
         setShow(false);
+        setImgURL(null);
       }}
     >
       <Modal.Header closeButton>
@@ -32,15 +35,21 @@ const UploadModal = ({ show, setShow }) => {
       <Modal.Body>
         <div>
           <Form onSubmit={onSubmit}>
-            <input
-              type="file"
-              name="file"
-              onChange={onChange}
-              accept="image/x-png,image/gif,image/jpeg"
-            />
-            <Button type="submit">Upload</Button>
+            <Row className="mx-auto">
+              <input
+                type="file"
+                name="file"
+                onChange={onChange}
+                accept="image/x-png,image/gif,image/jpeg"
+              />
+            </Row>
+            <Row className="mx-auto">
+              <img src={img_url} width={400} />
+            </Row>
+            <Row className="mx-auto">
+              <Button type="submit">Upload</Button>
+            </Row>
           </Form>
-          <img src={img_url} width={100} />
         </div>
       </Modal.Body>
     </Modal>

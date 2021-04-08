@@ -18,13 +18,19 @@ const Landing = () => {
   };
 
   const fetchImages = async () => {
-    let files = await getAll();
+    let files = await getAll("approved");
     files = files.data;
-    // console.log(files);
+
+    if (!files.length) {
+      setLoading(false);
+      setImages([]);
+      setTypes([]);
+      return;
+    }
     let fetched = [];
     let contentTypes = [];
     files.forEach(async (file, index) => {
-      let fetchedImage = await fetchImage(file.filename);
+      let fetchedImage = await fetchImage(file);
       if (fetchedImage && fetchedImage.data && fetchedImage.data.data) {
         fetched.push(fetchedImage.data.data);
         contentTypes.push(fetchedImage.data.contentType);

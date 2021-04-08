@@ -14,8 +14,8 @@ const addImage = async (file) => {
   return image;
 };
 
-const getAll = async () => {
-  let filenames = await axios.get(`${Base}/image/all`);
+const getAll = async (status) => {
+  let filenames = await axios.post(`${Base}/image/all`, { status: status });
   return filenames;
 };
 
@@ -24,9 +24,4 @@ const getImage = async (filename) => {
   return image;
 };
 
-const voteImg = async (filename, vote) => {
-  let voted = await axios.get(`${Base}/image/vote`, { filename, vote });
-  return voted;
-};
-
-export { addImage, getAll, getImage, voteImg };
+export { addImage, getAll, getImage };
