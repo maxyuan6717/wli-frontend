@@ -1,0 +1,11 @@
+.upload {
+  border: 2px solid red;
+}
+
+.upload:hover {
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}

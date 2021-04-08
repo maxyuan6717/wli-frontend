@@ -14,7 +14,7 @@ const UploadBtn = ({ setShow }) => {
       >
         <div className="my-auto">
           <FaPlus
-            size={25}
+            size={35}
             className={styles.btn}
             style={{ display: "block" }}
           />

@@ -8,15 +8,18 @@ const UploadModal = ({ show, setShow }) => {
   const [img_url, setImgURL] = useState();
   const onSubmit = async (e) => {
     e.preventDefault();
+
     await addImage(file);
     setShow(false);
     setImgURL(null);
+    setFile(null);
   };
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setImgURL(URL.createObjectURL(e.target.files[0]));
   };
+  console.log(file);
   return (
     <Modal
       size="lg"
@@ -25,6 +28,7 @@ const UploadModal = ({ show, setShow }) => {
       onHide={() => {
         setShow(false);
         setImgURL(null);
+        setFile(null);
       }}
     >
       <Modal.Header closeButton>
@@ -36,12 +40,20 @@ const UploadModal = ({ show, setShow }) => {
         <div>
           <Form onSubmit={onSubmit}>
             <Row className="mx-auto">
-              <input
-                type="file"
-                name="file"
-                onChange={onChange}
-                accept="image/x-png,image/gif,image/jpeg"
-              />
+              <label className={`my-auto ${styles.upload}`}>
+                <input
+                  type="file"
+                  name="file"
+                  onChange={onChange}
+                  accept="image/*"
+                />
+                Choose file
+              </label>
+              {file && file.name ? (
+                <span className="my-auto">{file.name}</span>
+              ) : (
+                ""
+              )}
             </Row>
             <Row className="mx-auto">
               <img src={img_url} width={400} />

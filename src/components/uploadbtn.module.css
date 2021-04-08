@@ -6,14 +6,14 @@
   padding: 15px;
   background-color: rgb(255, 164, 164);
   color: black;
-  border-radius: 40px;
-  max-width: 55px;
+  border-radius: 50px;
+  max-width: 65px;
   overflow: hidden;
   transition: max-width 0.3s;
 }
 
 .container:hover {
-  max-width: 200px;
+  max-width: 250px;
   cursor: pointer;
 }
 
@@ -28,5 +28,9 @@
 .text {
   text-decoration: none;
   margin-left: 25px;
+  margin-right: 5px;
   white-space: nowrap;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
 }
