@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import UploadBtn from "../components/uploadbtn";
 import UploadModal from "../components/uploadmodal";
 import { getAll, getImage } from "../util/api";
@@ -17,7 +17,7 @@ const Landing = () => {
     return image;
   };
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     let files = await getAll("approved");
     files = files.data;
 
@@ -41,11 +41,11 @@ const Landing = () => {
         setLoading(false);
       }
     });
-  };
-  useEffect(async () => {
-    setLoading(true);
-    await fetchImages();
   }, []);
+  useEffect(() => {
+    setLoading(true);
+    fetchImages();
+  }, [fetchImages]);
 
   return (
     <>
