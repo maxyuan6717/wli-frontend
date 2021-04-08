@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import UploadBtn from "../components/uploadbtn";
+import UploadModal from "../components/uploadmodal";
 import { getAll, getImage } from "../util/api";
 import styles from "./landing.module.css";
 import { Col } from "react-bootstrap";
@@ -8,6 +9,7 @@ const Landing = () => {
   const [images, setImages] = useState([]);
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
   const fetchImage = async (filename) => {
     // console.log(filename);
@@ -49,8 +51,9 @@ const Landing = () => {
       </Col>
 
       <div className={styles.btn}>
-        <UploadBtn />
+        <UploadBtn setShow={setShow} />
       </div>
+      <UploadModal show={show} setShow={setShow} />
     </>
   );
 };

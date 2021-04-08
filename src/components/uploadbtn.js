@@ -3,23 +3,26 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { Row } from "react-bootstrap";
 
-const UploadBtn = () => {
+const UploadBtn = ({ setShow }) => {
   return (
-    <Link to="/upload" className={styles.link}>
-      <Row className="mx-auto">
-        <div className={`${styles.container} d-flex flex-nowrap`}>
-          <div className="my-auto">
-            <FaPlus
-              size={25}
-              className={styles.btn}
-              style={{ display: "block" }}
-            />
-          </div>
-
-          <span className={`my-auto ${styles.text}`}>Upload a pic</span>
+    <Row className="mx-auto">
+      <div
+        className={`${styles.container} d-flex flex-nowrap`}
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        <div className="my-auto">
+          <FaPlus
+            size={25}
+            className={styles.btn}
+            style={{ display: "block" }}
+          />
         </div>
-      </Row>
-    </Link>
+
+        <span className={`my-auto ${styles.text}`}>Upload a pic</span>
+      </div>
+    </Row>
   );
 };
 
