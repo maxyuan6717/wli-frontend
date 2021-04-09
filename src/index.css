@@ -3,6 +3,7 @@ body {
   font-family: urw-din, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #cdf4e0 !important;
 }
 
 code {

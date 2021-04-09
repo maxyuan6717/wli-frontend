@@ -20,7 +20,7 @@ const UploadBtn = ({ setShow }) => {
           />
         </div>
 
-        <span className={`my-auto ${styles.text}`}>Upload a pic</span>
+        <span className={`my-auto ${styles.text}`}>Add to the Capsule</span>
       </div>
     </Row>
   );
