@@ -21,7 +21,6 @@ const CurvedContainer = styled.div`
   border-radius: 12px;
   overflow: hidden;
   width: 200px;
-  height: 200px;
 `;
 
 const ImageModal = ({ show, setShow }) => {

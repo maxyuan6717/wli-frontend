@@ -23,7 +23,7 @@ const Image = ({ src, color, data, setImgShow }) => {
       }}
     >
       {src && !color ? (
-        <StyledImg src={src} height={200} />
+        <StyledImg src={src} height={300} />
       ) : (
         <div>
           <ColorImg color={color} caption={data.caption} />
