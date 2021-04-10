@@ -1,9 +1,12 @@
 import axios from "axios";
 import { Base } from "./base";
 
-const addImage = async (file) => {
+const addImage = async (file, color, caption, tags) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("color", color);
+  formData.append("caption", caption);
+  formData.append("tags", tags);
   const config = {
     headers: {
       "content-type": "multipart/form-data",
@@ -20,8 +23,13 @@ const getAll = async (status) => {
 };
 
 const getImage = async (filename) => {
-  let image = await axios.post(`${Base}/image/get`, { filename });
+  let image = await axios.post(`${Base}/image/getImage`, { filename });
   return image;
 };
 
-export { addImage, getAll, getImage };
+const getColor = async (id) => {
+  let color = await axios.post(`${Base}/image/getColor`, { id });
+  return color;
+};
+
+export { addImage, getAll, getImage, getColor };

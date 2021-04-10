@@ -37,14 +37,18 @@ const StyledColor = styled.div`
   }
 `;
 
-const StyledButton = styled.div`
+const StyledButton = styled(Button)`
   background-color: #21cbc0;
   padding: 10px 20px;
   border-radius: 20px;
   transition: filter 0.2s;
+  border: none;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     filter: brightness(90%);
+    background-color: #21cbc0;
   }
 `;
 
@@ -68,13 +72,24 @@ const UploadModal = ({ show, setShow }) => {
   const [color, setColor] = useState();
   const [caption, setCaption] = useState("");
   const [tags, setTags] = useState([]);
+  const [err, setErr] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    await addImage(file);
+    if ((!file && !color) || caption.length === 0 || tags.length === 0) {
+      setErr(true);
+      setTimeout(() => {
+        setErr(false);
+      }, 2000);
+      return;
+    }
+    await addImage(file, color, caption, tags);
     setShow(false);
     // setImgURL(null);
     setFile(null);
+    setColor(null);
+    setCaption("");
+    setTags([]);
+    setErr(false);
   };
 
   const onChange = (e) => {
@@ -108,6 +123,7 @@ const UploadModal = ({ show, setShow }) => {
         setColor(null);
         setTags([]);
         setCaption("");
+        setErr(false);
       }}
     >
       <Modal.Header closeButton>
@@ -254,6 +270,7 @@ const UploadModal = ({ show, setShow }) => {
               <StyledButton type="submit">
                 <span className={styles.upload_btn}>Submit</span>
               </StyledButton>
+              {err ? <div>Please fill in all required sections</div> : null}
             </Row>
           </Form>
         </div>
