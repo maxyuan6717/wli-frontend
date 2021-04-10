@@ -10,6 +10,7 @@
   max-width: 65px;
   overflow: hidden;
   transition: max-width 0.3s;
+  z-index: 69;
 }
 
 .container:hover {
