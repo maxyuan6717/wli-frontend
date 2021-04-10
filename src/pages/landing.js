@@ -239,6 +239,11 @@ const Landing = () => {
                   data={color}
                 />
               ))}
+            {images.length === 0 && colorData.length === 0 ? (
+              <div style={{ fontWeight: 600, fontSize: "24px", opacity: 0.6 }}>
+                No Submissions
+              </div>
+            ) : null}
           </Row>
         )}
       </Row>
