@@ -4,6 +4,8 @@ import ColorImg from "./color";
 const StyledCard = styled.div`
   margin: 10px;
   transition: box-shadow 0.2s;
+  border-radius: 12px;
+  overflow: hidden;
 
   &:hover {
     cursor: pointer;
