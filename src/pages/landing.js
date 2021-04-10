@@ -188,7 +188,7 @@ const Landing = () => {
       </Row>
       <Row className="mx-auto">
         {loading ? (
-          <div className="d-flex" style={{ width: "100vw", height: "100vh" }}>
+          <div className="d-flex mt-5">
             <Spinner
               className="m-auto"
               animation="border"
