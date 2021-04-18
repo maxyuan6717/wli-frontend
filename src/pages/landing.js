@@ -203,42 +203,38 @@ const Landing = () => {
             className="mx-auto mt-5 justify-content-center"
             style={{ marginBottom: "80px" }}
           >
-            {images
-              .filter((image, index) => {
-                const intersection = tags.filter((val) =>
-                  imageData[index].tags.includes(val)
-                );
-                if (tags.length > 0 && intersection.length === 0) {
-                  return false;
-                }
-                return true;
-              })
-              .map((image, index) => (
+            {images.map((image, index) => {
+              const intersection = tags.filter((val) =>
+                imageData[index].tags.includes(val)
+              );
+              if (tags.length > 0 && intersection.length === 0) {
+                return null;
+              }
+              return (
                 <Image
                   setImgShow={setImgShow}
                   key={index}
                   src={`data:${imageData[index].contentType};base64,${image}`}
                   data={imageData[index]}
                 />
-              ))}
-            {colorData
-              .filter((color) => {
-                const intersection = tags.filter((val) =>
-                  color.tags.includes(val)
-                );
-                if (tags.length > 0 && intersection.length === 0) {
-                  return false;
-                }
-                return true;
-              })
-              .map((color, index) => (
+              );
+            })}
+            {colorData.map((color, index) => {
+              const intersection = tags.filter((val) =>
+                color.tags.includes(val)
+              );
+              if (tags.length > 0 && intersection.length === 0) {
+                return null;
+              }
+              return (
                 <Image
                   setImgShow={setImgShow}
                   key={index + images.length}
                   color={color.color}
                   data={color}
                 />
-              ))}
+              );
+            })}
             {images.length === 0 && colorData.length === 0 ? (
               <div style={{ fontWeight: 600, fontSize: "24px", opacity: 0.6 }}>
                 No Submissions
