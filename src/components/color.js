@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const StyledColor = styled.div`
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
 
   position: relative;
   overflow: hidden;
@@ -12,8 +12,8 @@ const StyledLetter = styled.span`
   font-family: urw-din, sans-serif;
   font-weight: 100;
   opacity: 0.5;
-  font-size: 250px;
-  line-height: 200px;
+  font-size: 350px;
+  line-height: 300px;
   color: white;
   position: absolute;
   left: -30px;
