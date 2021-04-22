@@ -15,11 +15,11 @@ const StyledCard = styled.div`
 
 const StyledImg = styled.img``;
 
-const Image = ({ src, color, data, setImgShow }) => {
+const Image = ({ src, color, data, setIndx, index }) => {
   return (
     <StyledCard
       onClick={() => {
-        setImgShow({ src, color, data });
+        setIndx(index);
       }}
     >
       {src && !color ? (

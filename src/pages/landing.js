@@ -26,7 +26,7 @@ const Landing = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const [imgShow, setImgShow] = useState({});
+  const [indx, setIndx] = useState(-1);
   const [tags, setTags] = useState([]);
 
   const status = "approved";
@@ -138,7 +138,8 @@ const Landing = () => {
               }
               return (
                 <Image
-                  setImgShow={setImgShow}
+                  setIndx={setIndx}
+                  index={index}
                   key={index}
                   src={image.url}
                   color={image.color === "null" ? null : image.color}
@@ -157,7 +158,7 @@ const Landing = () => {
       <div className={styles.btn}>
         <UploadBtn setShow={setShow} />
       </div>
-      <ImageModal show={imgShow} setShow={setImgShow} />
+      <ImageModal indx={indx} setIndx={setIndx} images={images} />
       <UploadModal show={show} setShow={setShow} />
     </div>
   );
