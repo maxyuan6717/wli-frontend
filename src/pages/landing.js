@@ -35,11 +35,11 @@ const Landing = () => {
 
       if (keyCode === 37 && indx > 0) {
         setIndx(indx - 1);
-      } else if (keyCode === 39 && indx >= 0 && indx < images.length - 1) {
+      } else if (keyCode === 39 && indx >= 0 && indx < filtered.length - 1) {
         setIndx(indx + 1);
       }
     },
-    [images, indx]
+    [filtered, indx]
   );
 
   useEffect(() => {
