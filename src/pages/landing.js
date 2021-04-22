@@ -166,7 +166,7 @@ const Landing = () => {
         </span>
       </Row>
       <Row className="mx-auto justify-content-center mt-3">
-        {all_tags.map((tag) => (
+        {all_tags.map((tag, index) => (
           <StyledTag
             onClick={() => {
               let temp = [...tags];
@@ -181,6 +181,7 @@ const Landing = () => {
             style={{
               backgroundColor: tags.includes(tag) ? "#21cbc0" : "white",
             }}
+            key={index}
           >
             {tag}
           </StyledTag>

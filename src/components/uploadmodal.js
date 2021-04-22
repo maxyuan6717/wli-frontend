@@ -186,7 +186,7 @@ const UploadModal = ({ show, setShow }) => {
               >
                 {color_clicked ? (
                   <Row className="mx-auto my-auto">
-                    {colors.map((cur) => {
+                    {colors.map((cur, index) => {
                       return (
                         <StyledColor
                           style={{ backgroundColor: cur }}
@@ -194,6 +194,7 @@ const UploadModal = ({ show, setShow }) => {
                             setColor(cur);
                             setFile(null);
                           }}
+                          key={index}
                         >
                           <span className="m-auto">
                             {color === cur ? (
@@ -241,7 +242,7 @@ const UploadModal = ({ show, setShow }) => {
             </StyledHeader>
             <div style={{ width: "250px" }}>
               <Row className="mx-auto mb-4">
-                {all_tags.map((tag) => (
+                {all_tags.map((tag, index) => (
                   <StyledTag
                     onClick={() => {
                       let temp = [...tags];
@@ -260,6 +261,7 @@ const UploadModal = ({ show, setShow }) => {
                         ? "2px solid black"
                         : "2px solid #cdf4d5",
                     }}
+                    key={index}
                   >
                     {tag}
                   </StyledTag>
