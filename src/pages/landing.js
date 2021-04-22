@@ -24,6 +24,7 @@ const StyledTag = styled.div`
 
 const Landing = () => {
   const [images, setImages] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [indx, setIndx] = useState(-1);
@@ -43,6 +44,18 @@ const Landing = () => {
     setLoading(true);
     fetchImages();
   }, [fetchImages]);
+
+  useEffect(() => {
+    let temp = [];
+    images.forEach((image) => {
+      const intersection = tags.filter((val) => image.tags.includes(val));
+      if (tags.length > 0 && intersection.length === 0) {
+        return;
+      }
+      temp.push(image);
+    });
+    setFiltered(temp);
+  }, [images, tags]);
 
   const all_tags = [
     "Connection",
@@ -129,25 +142,17 @@ const Landing = () => {
             className="mx-auto mt-5 justify-content-center"
             style={{ marginBottom: "80px" }}
           >
-            {images.map((image, index) => {
-              const intersection = tags.filter((val) =>
-                image.tags.includes(val)
-              );
-              if (tags.length > 0 && intersection.length === 0) {
-                return null;
-              }
-              return (
-                <Image
-                  setIndx={setIndx}
-                  index={index}
-                  key={index}
-                  src={image.url}
-                  color={image.color === "null" ? null : image.color}
-                  data={image}
-                />
-              );
-            })}
-            {images.length === 0 ? (
+            {filtered.map((image, index) => (
+              <Image
+                setIndx={setIndx}
+                index={index}
+                key={index}
+                src={image.url}
+                color={image.color === "null" ? null : image.color}
+                data={image}
+              />
+            ))}
+            {filtered.length === 0 ? (
               <div style={{ fontWeight: 600, fontSize: "24px", opacity: 0.6 }}>
                 No Submissions
               </div>
@@ -158,7 +163,7 @@ const Landing = () => {
       <div className={styles.btn}>
         <UploadBtn setShow={setShow} />
       </div>
-      <ImageModal indx={indx} setIndx={setIndx} images={images} />
+      <ImageModal indx={indx} setIndx={setIndx} images={filtered} />
       <UploadModal show={show} setShow={setShow} />
     </div>
   );
