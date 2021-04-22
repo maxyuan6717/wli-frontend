@@ -69,8 +69,8 @@ const ImageModal = ({ images, indx, setIndx }) => {
             </Col>
             <Col md={8} className="pr-0 pl-4">
               <Row className="mx-auto mb-3">
-                {images[indx].tags.map((tag) => (
-                  <StyledTag>{tag}</StyledTag>
+                {images[indx].tags.map((tag, index) => (
+                  <StyledTag key={index}>{tag}</StyledTag>
                 ))}
               </Row>
               <Row className="mx-auto">{images[indx].caption}</Row>

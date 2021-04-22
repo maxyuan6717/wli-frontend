@@ -29,6 +29,26 @@ const Landing = () => {
   const [show, setShow] = useState(false);
   const [indx, setIndx] = useState(-1);
   const [tags, setTags] = useState([]);
+  const handleUserKeyPress = useCallback(
+    (event) => {
+      const { keyCode } = event;
+
+      if (keyCode === 37 && indx > 0) {
+        setIndx(indx - 1);
+      } else if (keyCode === 39 && indx >= 0 && indx < images.length - 1) {
+        setIndx(indx + 1);
+      }
+    },
+    [images, indx]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyPress);
+    };
+  }, [handleUserKeyPress]);
 
   const status = "approved";
 
